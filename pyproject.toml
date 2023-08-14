@@ -1,0 +1,114 @@
+[tool.poetry]
+name = "TelegramBot"
+version = "2023.2.1"
+description = "Telegram bot"
+authors = [
+    "Oleg A. <t0rr@mail.ru>",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiogram = { version = "3.0.0b9", allow-prereleases = true }
+pydantic = { version = "^2", extras = ["dotenv"] }
+ujson = { version = "~5.8", markers = "sys_platform != 'win32' and implementation_name == 'cpython'" }
+uvloop = { version = "~0.17", markers = "sys_platform != 'win32' and implementation_name == 'cpython'" }
+redis = { version = "~4.6", extras = ["hiredis"] }
+backoff = "~2.2"
+pydantic-settings = "^2.0.2"
+
+
+[tool.poetry.dev-dependencies]
+black = { version = "^23.7", extras = ["d"] }
+mypy = "^1.4"
+pre-commit = "^3.3"
+pytest = "^7.2"
+pytest-aiohttp = "^1.0"
+ruff = "^0.0"
+
+[tool.black]
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.tox
+  | venv
+  | build
+  | dist
+)/
+'''
+
+
+[tool.mypy]
+warn_redundant_casts = true
+warn_unused_ignores = false
+warn_no_return = true
+warn_unreachable = false
+pretty = true
+
+[[tool.mypy.overrides]]
+module = "*.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+
+[tool.ruff]
+src = ["app", "tools", "tests"]
+select = ["ALL"]
+ignore = ["ANN101", "ANN102", "D100", "D101", "D106", "D107", "D104", "D203", "D213", "RUF001", "RUF002", "RUF003", "S101", "PT015", "PT017", "B011"]
+fixable = ["ALL"]
+unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# Same as Black.
+line-length = 88
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.11.
+target-version = "py311"
+
+[tool.ruff.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+[tool.ruff.flake8-type-checking]
+strict = true
+
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101", "INP001"]
+"tools/*" = ["INP001"]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

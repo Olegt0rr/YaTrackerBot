@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+
+  app:
+    build: .
+    restart: on-failure
+    stop_signal: SIGINT
+    depends_on:
+      redis:
+        condition: service_healthy
+    env_file:
+      - test.env  # create this file first! :)
+    healthcheck:
+      test: python3 check_health.py || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    restart: on-failure
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  redis-data:
+    driver: "local"
