@@ -15,6 +15,7 @@ uvloop = { version = "~0.17", markers = "sys_platform != 'win32' and implementat
 redis = { version = "~4.6", extras = ["hiredis"] }
 backoff = "~2.2"
 pydantic-settings = "^2.0.2"
+yatracker = "^2023.8.1"
 
 
 [tool.poetry.dev-dependencies]
@@ -58,7 +59,7 @@ ignore_errors = true
 [tool.ruff]
 src = ["app", "tools", "tests"]
 select = ["ALL"]
-ignore = ["ANN101", "ANN102", "D100", "D101", "D106", "D107", "D104", "D203", "D213", "RUF001", "RUF002", "RUF003", "S101", "PT015", "PT017", "B011"]
+ignore = ["ANN101", "ANN102", "ANN401", "D100", "D101", "D106", "D107", "D104", "D203", "D213", "RUF001", "RUF002", "RUF003", "S101", "PT015", "PT017", "B011"]
 fixable = ["ALL"]
 unfixable = []
 

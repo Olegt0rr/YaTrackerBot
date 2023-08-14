@@ -5,8 +5,11 @@ from typing import TYPE_CHECKING
 
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler
 
+from app.tracker.setup import TRACKER_APP
+
 from .bot import create_bot
 from .dispatcher import create_dispatcher
+from .middlewares.tracker import TrackerMiddleware
 from .settings import get_telegram_settings
 from .storage import create_storage
 
@@ -14,6 +17,7 @@ if TYPE_CHECKING:
     from aiogram import Bot, Dispatcher
     from aiogram.fsm.storage.base import BaseStorage
     from aiohttp.web_app import Application
+    from yatracker import YaTracker
 
 
 def setup_telegram(app: Application) -> None:
@@ -24,6 +28,9 @@ def setup_telegram(app: Application) -> None:
     redis = app.get("redis")
     storage = app["storage"] = create_storage(redis)
     dispatcher = app["dispatcher"] = create_dispatcher(storage)
+    tracker: YaTracker = app[TRACKER_APP]
+
+    dispatcher.message.middleware(TrackerMiddleware(tracker))
 
     if settings.WEBHOOK_ENABLED:
         handler = SimpleRequestHandler(dispatcher=dispatcher, bot=bot)

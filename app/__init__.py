@@ -1,8 +1,8 @@
 from aiohttp.web_app import Application
 
 from .core.setup import setup_core
-from .redis.setup import setup_redis
 from .telegram.setup import setup_telegram
+from .tracker.setup import setup_tracker
 
 
 def app_factory() -> Application:
@@ -12,7 +12,7 @@ def app_factory() -> Application:
     """
     app = Application()
 
-    setup_redis(app)
+    setup_tracker(app)
     setup_telegram(app)
     setup_core(app)
 
