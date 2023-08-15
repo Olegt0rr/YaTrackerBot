@@ -9,4 +9,4 @@ logging.basicConfig(level=logging.INFO)
 
 settings = WebAppSettings()
 app = app_factory()
-run_app(app, host=settings.HOST, port=settings.PORT)
+run_app(app, host=settings.HOST, port=settings.PORT, access_log=None)
