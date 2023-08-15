@@ -1,4 +1,4 @@
-Web Service Template
+Yandex Tracker Bot
 ===
 
 [![Python](https://img.shields.io/badge/python-^3.11-blue)](https://www.python.org/)
@@ -19,17 +19,14 @@ Scalable.
 
 Webserver and client are based on [aiohttp](https://github.com/aio-libs/aiohttp).
 
-### 2. REDIS
 
-Service for cache and states based on [redis.asyncio](https://github.com/redis/redis-py)
-
-### 3. TELEGRAM
+### 2. TELEGRAM
 
 Telegram API client based on [aiogram v3](https://github.com/aiogram/aiogram/tree/dev-3.x)
 
 - ready for polling/webhook update listening mode
 
-### 4. OTHER SERVICES
+### 3. OTHER SERVICES
 
 You easily can add any other service :)
 
@@ -37,7 +34,7 @@ You easily can add any other service :)
 
 - **pydantic settings** – ready to read .env / docker secrets
 - **uvloop** – speed up asyncio event loop
-- **ujson** – speed up json (de)serialization
+- **msgspec** – speed up json (de)serialization
 - **backoff** – retry on network and other failures
 
 ---
