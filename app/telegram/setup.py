@@ -25,8 +25,7 @@ def setup_telegram(app: Application) -> None:
     settings = get_telegram_settings()
 
     bot = app["bot"] = create_bot()
-    redis = app.get("redis")
-    storage = app["storage"] = create_storage(redis)
+    storage = app["storage"] = create_storage()
     dispatcher = app["dispatcher"] = create_dispatcher(storage)
     tracker: YaTracker = app[TRACKER_APP]
 
