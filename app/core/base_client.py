@@ -6,8 +6,8 @@ import ssl
 from typing import TYPE_CHECKING, Any
 
 import backoff
-from aiohttp import ClientError, ClientSession, TCPConnector
-from ujson import dumps, loads
+import msgspec
+from aiohttp import BytesPayload, ClientError, ClientSession, TCPConnector
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -22,16 +22,19 @@ class BaseClient:
         self._base_url = base_url
         self._session: ClientSession | None = None
         self.log = logging.getLogger(self.__class__.__name__)
+        self._encoder = msgspec.json.Encoder()
+        self._decoder = msgspec.json.Decoder()
 
     async def _get_session(self) -> ClientSession:
         """Get aiohttp session with cache."""
         if self._session is None:
             ssl_context = ssl.SSLContext()
             connector = TCPConnector(ssl_context=ssl_context)
+
             self._session = ClientSession(
                 base_url=self._base_url,
                 connector=connector,
-                json_serialize=dumps,
+                json_serialize=lambda obj: self._encoder.encode(obj).decode(),
             )
 
         return self._session
@@ -54,9 +57,19 @@ class BaseClient:
             json,
             params,
         )
-        async with session.request(method, url, params=params, json=json) as response:
+        bytes_payload = BytesPayload(
+            value=self._encoder.encode(json),
+            content_type="application/json",
+        )
+
+        async with session.request(
+            method,
+            url,
+            params=params,
+            data=bytes_payload,
+        ) as response:
             status = response.status
-            result = await response.json(loads=loads)
+            result = await response.json(loads=self._decoder.decode)
 
         self.log.debug(
             "Got response %r %r with status %r and json %r",

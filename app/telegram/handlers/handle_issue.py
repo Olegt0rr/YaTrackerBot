@@ -5,7 +5,7 @@ import re
 from typing import TYPE_CHECKING
 
 from aiogram import F
-from yatracker.types import YaTrackerError
+from yatracker.exceptions import YaTrackerError
 
 from app.tracker.helpers import get_issue_preview
 
@@ -46,7 +46,6 @@ async def handle_issues(
     lines: list[str] = []
     for issue in issues:
         preview = get_issue_preview(issue)
-        logger.info("Get issue preview: %s", preview)
         lines.append(preview)
 
     await message.answer("\n\n".join(lines))
