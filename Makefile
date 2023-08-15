@@ -15,7 +15,7 @@ ruff:
 	ruff check tools --fix
 	ruff check tests --fix
 
-lint: black ruff mypy
+lint: ruff mypy black
 
 
 run:
