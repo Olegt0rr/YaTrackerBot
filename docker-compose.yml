@@ -6,9 +6,6 @@ services:
     build: .
     restart: on-failure
     stop_signal: SIGINT
-    depends_on:
-      redis:
-        condition: service_healthy
     env_file:
       - .env  # create this file first! :)
     healthcheck:
