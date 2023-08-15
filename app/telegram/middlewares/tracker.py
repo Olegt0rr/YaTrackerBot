@@ -1,8 +1,8 @@
 from collections.abc import Awaitable, Callable
-from typing import Any
+from typing import Any, cast
 
 from aiogram import BaseMiddleware
-from aiogram.types import Message
+from aiogram.types import Message, TelegramObject
 from yatracker import YaTracker
 
 
@@ -13,9 +13,10 @@ class TrackerMiddleware(BaseMiddleware):
     async def __call__(
         self,
         handler: Callable[[Message, dict[str, Any]], Awaitable[Any]],
-        event: Message,
+        event: TelegramObject,
         data: dict[str, Any],
     ) -> Any:
         """Add tracker client to Telegram handlers."""
         data["tracker"] = self._client
-        return await handler(event, data)
+        message = cast(Message, event)
+        return await handler(message, data)

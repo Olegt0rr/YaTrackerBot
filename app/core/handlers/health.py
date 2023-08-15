@@ -47,7 +47,7 @@ async def _process_checks(
     return {name: await check for name, check in checks.items()}
 
 
-def _prepare_response(results: dict[str, bool]) -> tuple[int, dict]:
+def _prepare_response(results: dict[str, bool]) -> tuple[int, dict[Any, Any]]:
     """Prepare result response."""
     if all(results.items()):
         return 200, {"status": "UP"}

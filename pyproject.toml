@@ -40,11 +40,26 @@ exclude = '''
 
 
 [tool.mypy]
+follow_imports = "silent"
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
 warn_redundant_casts = true
 warn_unused_ignores = false
 warn_no_return = true
 warn_unreachable = false
 pretty = true
+
+plugins = [
+  "pydantic.mypy"
+]
+
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
 
 [[tool.mypy.overrides]]
 module = "*.*"

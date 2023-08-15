@@ -51,7 +51,7 @@ async def start_polling(app: Application) -> None:
 
 async def stop_polling(app: Application) -> None:
     """Stop Telegram polling on app shutdown."""
-    polling_task: asyncio.Task = app["polling_task"]
+    polling_task: asyncio.Task[None] = app["polling_task"]
     polling_task.cancel()
 
 

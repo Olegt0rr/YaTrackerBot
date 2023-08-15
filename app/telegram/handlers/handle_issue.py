@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 async def handle_issues(
     message: Message,
     tracker: YaTracker,
-    issue_pattern: re.Pattern = ISSUE_PATTERN,
+    issue_pattern: re.Pattern[str] = ISSUE_PATTERN,
 ) -> None:
     """Handle issue pattern."""
-    text = message.text or message.caption
+    text = message.text or message.caption or ""
     keys = issue_pattern.findall(text)
 
     issues: list[FullIssue] = []

@@ -13,5 +13,4 @@ logger = logging.getLogger(__name__)
 
 def create_storage() -> BaseStorage:
     """Prepare storage for FSM and data bucket."""
-
     return MemoryStorage()
