@@ -1309,19 +1309,23 @@ multidict = ">=4.0"
 
 [[package]]
 name = "yatracker"
-version = "2023.8.4"
+version = "2023.8.6"
 description = "Async client for Yandex Tracker API"
 optional = false
-python-versions = ">=3.10,<4.0"
+python-versions = ">=3.10"
 files = [
-    {file = "yatracker-2023.8.4-py3-none-any.whl", hash = "sha256:d0c9f58f26268f817e8d13144afa28c07d40fe4e0501f369f27e66641811a5ea"},
-    {file = "yatracker-2023.8.4.tar.gz", hash = "sha256:8ec64a55a11df77af653ba3ff9ae1d7c35fa180a8c2735924e35993e62543136"},
+    {file = "yatracker-2023.8.6-py3-none-any.whl", hash = "sha256:cc28547ab86ebb4397e1915d21e028a52f5acb5f6c3e5cf351d72f5c062f091f"},
+    {file = "yatracker-2023.8.6.tar.gz", hash = "sha256:e28f2d52b5139d149a8279a1b1bc2524d82a051c7b94121c3982314ff0429bb9"},
 ]
 
 [package.dependencies]
-aiohttp = ">=3.8,<4.0"
-certifi = ">=2023,<2024"
-msgspec = ">=0.18,<0.19"
+aiohttp = ">=3.8.5,<3.9.0"
+certifi = ">=2023"
+msgspec = ">=0.18.1,<0.19.0"
+
+[package.extras]
+dev = ["black (>=23)", "mypy (>=1)", "pre-commit (>=3)", "ruff (>=0)"]
+test = ["coverage (>=7)", "pytest (>=7)", "pytest-asyncio (>=0)", "pytest-cov (>=4)"]
 
 [metadata]
 lock-version = "2.0"
