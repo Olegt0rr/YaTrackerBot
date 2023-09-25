@@ -8,7 +8,7 @@ authors = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-aiogram = "^3.0"
+aiogram = "^3.1"
 pydantic = { version = "^2", extras = ["dotenv"] }
 uvloop = { version = "~0.17", markers = "sys_platform != 'win32' and implementation_name == 'cpython'" }
 backoff = "~2.2"
