@@ -10,7 +10,7 @@ authors = [
 python = "^3.10"
 aiogram = "^3.1"
 pydantic = { version = "^2", extras = ["dotenv"] }
-uvloop = { version = "~0.17", markers = "sys_platform != 'win32' and implementation_name == 'cpython'" }
+uvloop = { version = "~0.18", markers = "sys_platform != 'win32' and implementation_name == 'cpython'" }
 backoff = "~2.2"
 pydantic-settings = "^2.0.2"
 yatracker = "^2023.10"
