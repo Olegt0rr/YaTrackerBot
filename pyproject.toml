@@ -19,7 +19,7 @@ yatracker = "^2023.10"
 [tool.poetry.dev-dependencies]
 black = { version = "^24.3", extras = ["d"] }
 mypy = "^1.9"
-pre-commit = "^3.6"
+pre-commit = "^3.7"
 pytest = "^8.1"
 pytest-aiohttp = "^1.0"
 ruff = "^0.3"
