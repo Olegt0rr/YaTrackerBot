@@ -1333,26 +1333,26 @@ multidict = ">=4.0"
 
 [[package]]
 name = "yatracker"
-version = "2023.10.4"
+version = "2024.4.1"
 description = "Async client for Yandex Tracker API"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "yatracker-2023.10.4-py3-none-any.whl", hash = "sha256:cecae2af5d6619b8f01d117a8a58a7734d2671e5b294cca531071821b1f77f60"},
-    {file = "yatracker-2023.10.4.tar.gz", hash = "sha256:401569e7df0a650fe985c2b70ca578d2d24e862cc2f0f670712d6dbf5e7821b9"},
+    {file = "yatracker-2024.4.1-py3-none-any.whl", hash = "sha256:2de56841eb307658f184b9fc95658143c979731e2454c1261de3d2e21fd83af8"},
+    {file = "yatracker-2024.4.1.tar.gz", hash = "sha256:7b2faef0af1c093d8bc3a530f04d5e5052c278826c7227b82e0b91354d5bec4f"},
 ]
 
 [package.dependencies]
-aiohttp = ">=3.8.5,<3.9.0"
+aiohttp = ">=3.8.5,<3.10.0"
 certifi = ">=2023"
 msgspec = ">=0.18.2,<0.19.0"
 
 [package.extras]
-dev = ["black (>=23)", "mypy (>=1)", "pre-commit (>=3)", "ruff (>=0)"]
+dev = ["mypy (>=1)", "pre-commit (>=3)", "ruff (>=0)"]
 docs = ["mkdocs-material", "mkdocstrings[python]"]
 test = ["coverage (>=7)", "pytest (>=7)", "pytest-asyncio (>=0)", "pytest-cov (>=4)"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "a9347502b049ae5bf6f4f10816cdbc05ad37ca3e660fb9b81239f126d75f0fd4"
+content-hash = "3abc9b8912951ce7e099f41b3316cccfa7d77d81d39ae4a9f01f913b995b7f78"
