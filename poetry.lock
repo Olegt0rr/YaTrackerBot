@@ -1333,13 +1333,13 @@ multidict = ">=4.0"
 
 [[package]]
 name = "yatracker"
-version = "2024.4.1"
+version = "2024.4.2"
 description = "Async client for Yandex Tracker API"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "yatracker-2024.4.1-py3-none-any.whl", hash = "sha256:2de56841eb307658f184b9fc95658143c979731e2454c1261de3d2e21fd83af8"},
-    {file = "yatracker-2024.4.1.tar.gz", hash = "sha256:7b2faef0af1c093d8bc3a530f04d5e5052c278826c7227b82e0b91354d5bec4f"},
+    {file = "yatracker-2024.4.2-py3-none-any.whl", hash = "sha256:fcbd606ee7b1b29368e48e0229985014c58a62e8655ba4582e373be5e8725054"},
+    {file = "yatracker-2024.4.2.tar.gz", hash = "sha256:637167420f11346cf60cc6c66823d70dc832fca939a6e48aa7ae42e13aab9d95"},
 ]
 
 [package.dependencies]
