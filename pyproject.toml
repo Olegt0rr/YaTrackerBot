@@ -20,7 +20,7 @@ yatracker = "^2024.4"
 black = { version = "^24.4", extras = ["d"] }
 mypy = "^1.10"
 pre-commit = "^3.7"
-pytest = "^8.2"
+pytest = "^8.3"
 pytest-aiohttp = "^1.0"
 ruff = "^0.5"
 
