@@ -22,7 +22,7 @@ mypy = "^1.11"
 pre-commit = "^4.0"
 pytest = "^8.3"
 pytest-aiohttp = "^1.0"
-ruff = "^0.6"
+ruff = "^0.7"
 
 [tool.black]
 exclude = '''
