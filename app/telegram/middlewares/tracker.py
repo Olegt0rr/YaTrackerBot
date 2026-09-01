@@ -18,5 +18,5 @@ class TrackerMiddleware(BaseMiddleware):
     ) -> Any:
         """Add tracker client to Telegram handlers."""
         data["tracker"] = self._client
-        message = cast(Message, event)
+        message = cast("Message", event)
         return await handler(message, data)
