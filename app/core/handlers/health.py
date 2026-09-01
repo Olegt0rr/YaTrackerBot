@@ -49,7 +49,7 @@ async def _process_checks(
 
 def _prepare_response(results: dict[str, bool]) -> tuple[int, dict[Any, Any]]:
     """Prepare result response."""
-    if all(results.items()):
+    if all(results.values()):
         return 200, {"status": "UP"}
     return 500, {"status": "DOWN", "detail": results}
 

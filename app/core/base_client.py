@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import asyncio
 import logging
-import ssl
 from typing import TYPE_CHECKING, Any
 
 import backoff
 import msgspec
-from aiohttp import BytesPayload, ClientError, ClientSession, TCPConnector
+from aiohttp import BytesPayload, ClientError, ClientSession
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -28,12 +27,11 @@ class BaseClient:
     async def _get_session(self) -> ClientSession:
         """Get aiohttp session with cache."""
         if self._session is None:
-            ssl_context = ssl.SSLContext()
-            connector = TCPConnector(ssl_context=ssl_context)
-
+            # The default connector validates TLS certificates; the previous
+            # hand-rolled ssl.SSLContext() silently disabled verification and
+            # relied on the ssl_context= kwarg removed in aiohttp 3.10.
             self._session = ClientSession(
                 base_url=self._base_url,
-                connector=connector,
                 json_serialize=lambda obj: self._encoder.encode(obj).decode(),
             )
 

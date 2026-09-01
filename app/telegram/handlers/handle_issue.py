@@ -5,6 +5,7 @@ import re
 from typing import TYPE_CHECKING
 
 from aiogram import F
+from magic_filter import RegexpMode
 from yatracker.exceptions import YaTrackerError
 
 from app.tracker.helpers import get_issue_preview
@@ -48,6 +49,9 @@ async def handle_issues(
         preview = get_issue_preview(issue)
         lines.append(preview)
 
+    if not lines:
+        return
+
     await message.answer("\n\n".join(lines))
 
 
@@ -55,5 +59,5 @@ def setup(dispatcher: Dispatcher) -> None:
     """Register handlers."""
     dispatcher.message.register(
         handle_issues,
-        F.text.regexp(r"(\w+-\d+)", search=True),
+        F.text.regexp(ISSUE_PATTERN, mode=RegexpMode.SEARCH),
     )
