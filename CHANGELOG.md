@@ -15,10 +15,12 @@
   (removed in aiogram 3.7).
 - Migrated the issue-key filter from the deprecated magic-filter `search=True`
   to `mode=RegexpMode.SEARCH`.
-- Python requirement narrowed to `>=3.10,<3.13` (yatracker pins msgspec 0.18,
-  which does not support 3.13+).
-- Pinned aiosignal to `~1.3` (1.4 typing is incompatible with aiohttp < 3.12,
-  and yatracker caps aiohttp below 3.10).
+- Updated yatracker 2024.4 → 2026.9, which lifted the aiohttp cap:
+  aiohttp 3.9 → 3.14 (includes fixes for CVE-2024-42367 and CVE-2024-52304),
+  pytest-aiohttp 1.0 → 1.1, and the temporary aiosignal pin is gone.
+- Python requirement is `>=3.10,<3.15` (upper bound comes from aiogram).
+- `BaseClient` now uses stdlib `json` instead of msgspec (msgspec left the
+  dependency tree together with the old yatracker).
 - Migrated ruff configuration to the `[tool.ruff.lint]` layout; refreshed
   pre-commit hooks (ruff, mypy) to match the new tool versions.
 
