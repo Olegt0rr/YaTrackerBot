@@ -33,7 +33,6 @@ You easily can add any other service :)
 
 - **pydantic settings** – ready to read .env / docker secrets
 - **uvloop** – speed up asyncio event loop
-- **msgspec** – speed up json (de)serialization
 - **backoff** – retry on network and other failures
 
 ---
