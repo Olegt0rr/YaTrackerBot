@@ -20,6 +20,6 @@ repos:
     rev: 'v2.3.1'
     hooks:
       - id: mypy
-        additional_dependencies: ["msgspec", "pydantic-settings"]
+        additional_dependencies: ["pydantic-settings"]
         args: [ --ignore-missing-imports ]
         exclude: tests

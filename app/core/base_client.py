@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import asyncio
+import json as jsonlib
 import logging
 from typing import TYPE_CHECKING, Any
 
 import backoff
-import msgspec
 from aiohttp import BytesPayload, ClientError, ClientSession
 
 if TYPE_CHECKING:
@@ -21,8 +21,6 @@ class BaseClient:
         self._base_url = base_url
         self._session: ClientSession | None = None
         self.log = logging.getLogger(self.__class__.__name__)
-        self._encoder = msgspec.json.Encoder()
-        self._decoder = msgspec.json.Decoder()
 
     async def _get_session(self) -> ClientSession:
         """Get aiohttp session with cache."""
@@ -30,10 +28,7 @@ class BaseClient:
             # The default connector validates TLS certificates; the previous
             # hand-rolled ssl.SSLContext() silently disabled verification and
             # relied on the ssl_context= kwarg removed in aiohttp 3.10.
-            self._session = ClientSession(
-                base_url=self._base_url,
-                json_serialize=lambda obj: self._encoder.encode(obj).decode(),
-            )
+            self._session = ClientSession(base_url=self._base_url)
 
         return self._session
 
@@ -56,7 +51,7 @@ class BaseClient:
             params,
         )
         bytes_payload = BytesPayload(
-            value=self._encoder.encode(json),
+            value=jsonlib.dumps(json).encode(),
             content_type="application/json",
         )
 
@@ -67,7 +62,7 @@ class BaseClient:
             data=bytes_payload,
         ) as response:
             status = response.status
-            result = await response.json(loads=self._decoder.decode)
+            result = await response.json()
 
         self.log.debug(
             "Got response %r %r with status %r and json %r",
