@@ -50,9 +50,13 @@ class BaseClient:
             json,
             params,
         )
-        bytes_payload = BytesPayload(
-            value=jsonlib.dumps(json).encode(),
-            content_type="application/json",
+        bytes_payload = (
+            BytesPayload(
+                value=jsonlib.dumps(json).encode(),
+                content_type="application/json",
+            )
+            if json is not None
+            else None
         )
 
         async with session.request(
