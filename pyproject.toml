@@ -11,7 +11,7 @@ dependencies = [
     "aiogram>=3.31,<4",
     # magic-filter is imported directly (RegexpMode), not only via aiogram.
     "magic-filter>=1.0.12,<2",
-    "pydantic>=2,<3",
+    "pydantic>=2.13.5,<3",
     "uvloop>=0.22,<0.23 ; sys_platform != 'win32' and implementation_name == 'cpython'",
     "backoff>=2.2,<2.3",
     "pydantic-settings>=2.2.1,<3",
